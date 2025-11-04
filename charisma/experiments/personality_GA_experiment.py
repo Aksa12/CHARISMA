@@ -21,7 +21,7 @@ from charisma.config import config
 # =========================
 GLOBAL_SEED = 42                                     # per-slot seed = GLOBAL_SEED + schedule index
 load_dotenv()
-OPEN_ROUTER_API_KEY = os.getenv("OPEN_ROUTER_API_KEY_AKSA")
+OPEN_ROUTER_API_KEY = os.getenv("OPEN_ROUTER_API_KEY")
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1", api_key=OPEN_ROUTER_API_KEY
 )
@@ -255,6 +255,23 @@ def run_with_schedule(
         agent_b = row_by_id(chars, id_col, agent_b_id)
         agent_a_name = str(agent_a["mbti_profile"])
         agent_b_name = str(agent_b["mbti_profile"])
+        subcategory_a = str(agent_a["subcategory"])
+        subcategory_b = str(agent_b["subcategory"])
+        personality_a = {
+            'Openness': agent_a['Openness'],
+            'Conscientiousness': agent_a['Conscientiousness'],
+            'Extraversion': agent_a['Extraversion'],
+            'Agreeableness': agent_a['Agreeableness'],
+            'Neuroticism': agent_a['Neuroticism'],
+        }
+        personality_b = {
+            'Openness': agent_b['Openness'],
+            'Conscientiousness': agent_b['Conscientiousness'],
+            'Extraversion': agent_b['Extraversion'],
+            'Agreeableness': agent_b['Agreeableness'],
+            'Neuroticism': agent_b['Neuroticism'],
+        }
+
 
         # Deterministic per-slot seed
         seed = int(GLOBAL_SEED + i)
@@ -294,6 +311,10 @@ def run_with_schedule(
                     behavioral_coding_filename=behavioral_coding_csv,
                     agent1_name=agent_a_name,
                     agent2_name=agent_b_name,
+                    subcategory_a=subcategory_a,
+                    subcategory_b=subcategory_b,
+                    personality_a=personality_a,
+                    personality_b=personality_b,
                     scenario_data=scenario_data,
                     model=model,
                     provider=provider,
@@ -343,21 +364,6 @@ def run_with_schedule(
 
 
     print(f"[Runner] Finished. newly_processed={processed}, errors={errors}, total_done={len(done_ids)+processed}/{total}")
-
-# =========================
-# Example stubs (replace with your real functions)
-# =========================
-
-def interaction_generation(slot_row: pd.Series, seed: int, scenario: Dict[str, Any], agents: Dict[str, Any]) -> Dict[str, Any]:
-    """Replace with your actual generator (e.g., run_interaction_pipeline(...))."""
-    turns = (seed % 5) + 8
-    interaction_history = "\n".join([f"Turn {i+1}: demo (seed={seed})" for i in range(turns)])
-    return {"interaction_history": interaction_history, "meta": {"turns": turns}}
-
-def evaluation(interaction_history: str, scenario: Dict[str, Any], agents: Dict[str, Any]) -> Dict[str, Any]:
-    """Replace with your actual evaluator (e.g., evaluate_conversation_app(...))."""
-    score = min(10, max(1, len(interaction_history) % 10 + 1))
-    return {"GA_10": score, "notes": "demo scoring"}
 
 if __name__ == "__main__":
 

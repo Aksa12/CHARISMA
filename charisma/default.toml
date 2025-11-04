@@ -1,9 +1,8 @@
 [pipeline]
 name = "charisma"
 version = "0.1.0"
-model = "openai/gpt-5"
-provider = "openai/default"
-input_csv = "inputs/goals_openai.csv"
+model = "deepseek/deepseek-chat-v3-0324"
+provider = "siliconflow/fp8"
 behavioral_coding_csv="inputs/behavioral_coding.csv"
 [pipeline.setup_goals]
 input_csv = "inputs/Human_Goals_List_Clean_Updated.csv"
@@ -27,12 +26,12 @@ agent_per_pair=5
 num_repeats=5
 [pipeline.experiments.personality_ga]
 easy_scenario_csv="inputs/goals_deepseek__scenario_generation_Easy.csv"
-hard_scenario_csv="inputs/goals_deepseek__scenario_generation_Hard.csv"
+hard_scenario_csv="inputs/conflict_resolution_scenarios_hard.csv"
 characters_filepath="inputs/characters.csv"
-include_categories=["Cooperation", "Conflict Resolution"]
+include_categories=["Conflict Resolution"]
 n_scenario_reps=7
 max_pair_overall=2
 max_pair_per_cell=1
 pairs_output_csv="outputs/personality_ga/pairs.csv"
-assignment_output_csv="outputs/personality_ga/assignment_manifest.csv"
-results_csv="outputs/personality_ga/results.csv"
+assignment_output_csv="outputs/personality_ga/assignment_manifest_new.csv"
+results_csv="outputs/personality_ga/results_cr_bfi_scores_3.csv"

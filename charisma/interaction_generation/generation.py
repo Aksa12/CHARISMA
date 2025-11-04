@@ -66,9 +66,11 @@ class AgentHistory(BaseChatMessageHistory, BaseModel):
         for m in new_messages:
             if isinstance(m, AIMessage):
                 response = parse_json_response(m.content)["response"]
+                behavioral_code = parse_json_response(m.content).get("behavioral_code", "")
                 new_content = {
                     "agent": self.agent_name,
                     "response": response,
+                    "behavioral_code": behavioral_code,
                 }
                 message = AIMessage(content=f'{json.dumps(new_content)}')
                 logging.info(f"****************ADDED MESSAGE 1 {m}************************")
@@ -162,7 +164,7 @@ def format_behavioral_codes(df, act_type):
     """
     Filter behavioral codes by type of act and return formatted string.
     """
-    subset = df[df["Type of Act"] == act_type]
+    subset = df[(df["Type of Act"] == act_type) | (df["Type of Act"] == "Universal")]
     formatted = [
         f'- name: "{row["Behaviour Code"]}", description: "{row["Definition"]}."'
         for _, row in subset.iterrows()
@@ -213,7 +215,7 @@ class RolePlayEngine:
             HumanMessagePromptTemplate.from_template(human_templ),
         ])
 
-    def role_play(self, agent_a, agent_b, history_agenta_key, history_agentb_key, session_id, row, streaming=False):
+    def role_play(self, agent_a, agent_b, subcategory_a, subcategory_b, personality_a, personality_b, history_agenta_key, history_agentb_key, session_id, row, streaming=False):
         shared_goal = row["shared_goal"]
         social_goal_category = row["social_goal_category"]
         first_agent_goal = row["first_agent_goal"]
@@ -228,6 +230,8 @@ class RolePlayEngine:
         prompt1 = self.prompt.partial(
             agent_number=1,
             agent_name=agent_a,
+            sub_category=subcategory_a,
+            personality=personality_a,
             social_role=agent1_role,
             scenario=scenario,
             shared_goal=shared_goal,
@@ -239,6 +243,8 @@ class RolePlayEngine:
         prompt2 = self.prompt.partial(
             agent_number=2,
             agent_name=agent_b,
+            sub_category=subcategory_b,
+            personality=personality_b,
             social_role=agent2_role,
             scenario=scenario,
             shared_goal=shared_goal,
@@ -346,6 +352,7 @@ class RolePlayEngine:
             user_message = {
                 "agent": agent,
                 "response": reply,
+                "behavioral_code": response.get("behavioral_code", ""),
             }
             user_message_str = f'{json.dumps(user_message)}' if user_message else ''
             get_session_history(other_agent, session_id).add_reply(HumanMessage(content=user_message_str))
@@ -356,6 +363,8 @@ class RolePlayEngine:
                 "response": reply,
                 "behavioral_code": response.get("behavioral_code", ""),
                 "explanation": response.get("explanation", ""),
+                "bfi_personality_reflection": response.get("bfi_personality_reflection", ""),
+                "bfi_scores": response.get("bfi_scores", ""),
             })
             if streaming:
                 user_message["behavioral_code"] = response.get("behavioral_code", "")
@@ -494,7 +503,7 @@ def interaction_generation_app(model, provider, agent1_name, agent2_name, scenar
     return engine.role_play(agent1_name, agent2_name, history_agenta_key, history_agentb_key, session_id, data, True)
 
 
-def run_interaction_pipeline(behavioral_coding_filename: str, agent1_name: str, agent2_name: str, scenario_data: dict, model: str, provider = None, max_turns: int = 20,num_samples=None):
+def run_interaction_pipeline(behavioral_coding_filename: str, agent1_name: str, agent2_name: str,subcategory_a:str,subcategory_b:str, personality_a,personality_b, scenario_data: dict, model: str, provider = None, max_turns: int = 20,num_samples=None):
     model_obj = {
         "name": model,
         "providers": [provider] if provider else [],
@@ -508,7 +517,7 @@ def run_interaction_pipeline(behavioral_coding_filename: str, agent1_name: str, 
 
     STORE.clear()
     engine = RolePlayEngine(None, None, behavioral_coding_filename, None, model_obj, max_turns, num_samples)
-    dialogues_gen = engine.role_play(agent1_name, agent2_name, history_agenta_key, history_agentb_key, session_id, scenario_data)
+    dialogues_gen = engine.role_play(agent1_name, agent2_name, subcategory_a, subcategory_b, personality_a, personality_b, history_agenta_key, history_agentb_key, session_id, scenario_data)
     for m in dialogues_gen:
         dialogues = m
     return dialogues

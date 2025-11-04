@@ -194,7 +194,8 @@ def load_and_filter_scenarios(
     hard = hard[hard["social_goal_category"].isin(include_set)].copy()
 
 
-    slots = pd.concat([easy, hard], ignore_index=True)
+    # slots = pd.concat([easy, hard], ignore_index=True)
+    slots = hard.copy()
     slots = slots.loc[slots.index.repeat(n_reps)].copy()
     slots["replicate_id"] = slots.groupby(["difficulty", "scenario_idx"]).cumcount() + 1
     slots["subcategory"] = slots["social_goal_category"]
