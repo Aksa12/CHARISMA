@@ -2,6 +2,7 @@ from typing import Dict, Tuple
 from dataclasses import dataclass
 from transformers import pipeline
 import pandas as pd
+import ast
 from logging import getLogger
 log = getLogger(__name__)
 @dataclass
@@ -57,7 +58,8 @@ def calculate_entailment_scores(
     # Iterate through each row and get the scenario and scenario setting
     results = []
     for idx, row in df.iterrows():
-        scenario = row['scenario']
+        # scenario = row['scenario']
+        scenario = ast.literal_eval(row["scenario"])['scenario_context']
         schema = {
             "shared_goal": row['shared_goal'],
             "social_goal_category": row['social_goal_category'],
@@ -80,4 +82,4 @@ def calculate_entailment_scores(
         pd.DataFrame(results).to_csv(output_csv_file, index=False)
         
 if __name__ == "__main__":
-    calculate_entailment_scores("outputs/goals_deepseek__scenario_generation_Easy.csv", "outputs/scenario_evaluation/entailment/entailment_scores_easy.csv")
+    calculate_entailment_scores("outputs/scenarios_database.csv", "outputs/scenario_evaluation/entailment/entailment_scores.csv")

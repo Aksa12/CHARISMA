@@ -2,36 +2,49 @@
 name = "charisma"
 version = "0.1.0"
 model = "deepseek/deepseek-chat-v3-0324"
-provider = "siliconflow/fp8"
+provider = "novita/fp8"
 behavioral_coding_csv="inputs/behavioral_coding.csv"
+input_csv = "outputs/goals_gemini.csv"
 [pipeline.setup_goals]
 input_csv = "inputs/Human_Goals_List_Clean_Updated.csv"
-output_csv = "outputs/goals_openai.csv"
+output_csv = "outputs/goals_gemini.csv"
 num_records = 135
 [pipeline.scenario_generation]
-difficulty = "Hard" # TODO: Difficulty levels should be defined as a list
+difficulty = "Easy" # TODO: Difficulty levels should be defined as a list
 agentic_generation = false
 [pipeline.interaction_generation]
 scenarios_filepath = "inputs/goals_deepseek__scenario_generation_Easy.csv"
-characters_filepath = "inputs/characters.csv"
+characters_filepath = "inputs/characters_database.csv"
 [pipeline.evaluation]
 input_csv = "outputs/goals_deepseek__scenario_generation_medium__interaction_generation.csv"
 [pipeline.experiments.robustness_1]
 easy_scenario_csv="inputs/goals_deepseek__scenario_generation_Easy.csv"
 hard_scenario_csv="inputs/goals_deepseek__scenario_generation_Hard.csv"
-characters_filepath="inputs/characters.csv"
+scenarios_csv="inputs/scenario_database_filtered.csv"
+characters_filepath="inputs/characters_database.csv"
 num_scenarios=50
 num_agent_pairs=50
 agent_per_pair=5
 num_repeats=5
+assignment_output_csv="inputs/robustness_1_assignment.csv"
+results_csv="outputs/results_robustness_1_deepseek.csv"
 [pipeline.experiments.personality_ga]
 easy_scenario_csv="inputs/goals_deepseek__scenario_generation_Easy.csv"
 hard_scenario_csv="inputs/conflict_resolution_scenarios_hard.csv"
-characters_filepath="inputs/characters.csv"
+scenarios_csv="inputs/scenario_database_filtered.csv"
+characters_filepath="inputs/characters_database.csv"
 include_categories=["Conflict Resolution"]
 n_scenario_reps=7
 max_pair_overall=2
 max_pair_per_cell=1
 pairs_output_csv="outputs/personality_ga/pairs.csv"
-assignment_output_csv="outputs/personality_ga/assignment_manifest_new.csv"
-results_csv="outputs/personality_ga/results_cr_bfi_scores_3.csv"
+assignment_output_csv="inputs/robustness_2_assignment_cooperation.csv"
+results_csv="outputs/results_robustness_2_cooperation_deepseek.csv"
+[pipeline.experiments.robustness_2]
+characters_filepath="inputs/filtered_characters.csv"
+scenario_csv="inputs/scenario_database_filtered.csv"
+include_categories=["Conflict Resolution"]
+n_scenarios=6
+n_partners=3
+assignment_output_csv="outputs/robustness_2_assignment_manifest.csv"
+results_csv="outputs/robustness_2/results_new.csv"

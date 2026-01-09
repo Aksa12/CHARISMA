@@ -30,7 +30,7 @@ def evaluation_prompt(
 
     user_message = f"""
     ### GOAL: ###
-    We aim to investigate attribution theory within the field of social psychology through the simulation of psychologically profiled, role-playing agents. These agents are situated in interpersonal scenarios involving shared and individual goals, enabling the study of how dispositional traits and situational factors interact to shape social behaviour.
+    We aim to explore attribution theory in social psychology by simulating interactions between psychologically profiled, role-playing agents. These agents are situated in interpersonal scenarios involving shared and individual goals. The objective is to analyze how dispositional traits and situational factors interact to shape social behavior.
 
     ### TASK: ###
     Given the following scenario setting, your task is to evaluate the goal achievement in the following conversation between two agents within the following social scenario. In the conversation, each agent attempts to achieve:

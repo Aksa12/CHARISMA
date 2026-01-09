@@ -62,9 +62,9 @@ def read_done_slot_ids(results_csv: str) -> set:
     if not os.path.exists(results_csv):
         return set()
     df = pd.read_csv(results_csv, dtype=str)
-    if "slot_id" not in df.columns or "status" not in df.columns:
+    if "row_id" not in df.columns or "status" not in df.columns:
         return set()
-    return set(df.loc[df["status"] == "ok", "slot_id"].astype(str))
+    return set(df.loc[df["status"] == "ok", "row_id"].astype(str))
 
 # =========================
 # Loaders (scenarios/characters)
@@ -113,43 +113,8 @@ def build_combined_scenarios(easy_csv: str, hard_csv: str) -> pd.DataFrame:
 #             return m2.iloc[0]
 #     raise KeyError(f"Scenario not found for scenario_idx={scenario_idx} (and fallback by text failed).")
 
-def lookup_scenario_row(slot_id: str, easy_df: pd.DataFrame, hard_df: pd.DataFrame) -> pd.Series:
-    """
-    Extract scenario info from slot_id and return the corresponding row
-    from the correct DataFrame (easy or hard).
-    
-    slot_id format example: 'Easy_Cooperation_S000_R01'
-    """
-    # Parse slot_id structure
-    parts = slot_id.split("_")
-    if len(parts) < 4:
-        raise ValueError(f"Unexpected slot_id format: {slot_id}")
-    
-    difficulty = parts[0].capitalize()  # 'Easy' or 'Hard'
-    
-    # The part like S000 (3rd segment)
-    scenario_token = parts[-2]  # e.g., 'S000'
-    replicate_token = parts[-1] # e.g., 'R01'
-
-    # Extract numeric index (remove the leading 'S')
-    try:
-        scenario_idx = int(scenario_token.replace("S", ""))
-    except ValueError:
-        raise ValueError(f"Could not parse scenario index from slot_id={slot_id}")
-
-    # Pick the correct dataframe
-    if difficulty.lower().startswith("easy"):
-        df = easy_df
-    elif difficulty.lower().startswith("hard"):
-        df = hard_df
-    else:
-        raise ValueError(f"Difficulty not recognized in slot_id={slot_id}")
-
-    # Verify index exists
-    if scenario_idx >= len(df):
-        raise IndexError(f"Scenario index {scenario_idx} out of range for {difficulty} dataset (len={len(df)})")
-
-    row = df.iloc[scenario_idx]
+def lookup_scenario_row(scenario_idx: int, scenarios_df: pd.DataFrame) -> pd.Series:
+    row = scenarios_df.iloc[scenario_idx]
     return row
 
 
@@ -159,11 +124,12 @@ def lookup_scenario_row(slot_id: str, easy_df: pd.DataFrame, hard_df: pd.DataFra
 
 RESULTS_COLS = [
     # schedule identifiers
-    "slot_id", "scenario_idx", "replicate_id", "subcategory",
-    "agent_a_id", "agent_b_id", "agent_a_name", "agent_b_name", "pair_L1", "pair_L1_bin",
+    "row_id", "scenario_idx",
+    "agent_a_id", "agent_b_id", "agent_a_name", "agent_b_name", "pair_id", "pair_type_index", "pair_type_label", "pair_local_index",
     # scenario details loaded on demand
-    "difficulty", "base_shared_goal", "social_goal_category", "explanation",
-    "shared_goal", "first_agent_goal", "second_agent_goal", "agent1_role", "agent2_role", "scenario",
+    "base_shared_goal", "social_goal_category", "explanation",
+    "shared_goal", "first_agent_goal", "second_agent_goal", "agent1_role", "agent2_role", "scenario", "average_entailment_score",
+    "difficulty", "model_name",
     # run metadata
     "seed", "status", "created_at",
     # outputs
@@ -186,8 +152,7 @@ def ensure_results_header(results_csv: str):
 def run_with_schedule(
     schedule_csv: str,
     characters_csv: str,
-    easy_scenarios_csv: str,
-    hard_scenarios_csv: str,
+    scenarios_csv: str,
     behavioral_coding_csv: str,
     results_csv: str,
     model: str,
@@ -197,16 +162,14 @@ def run_with_schedule(
 
     # Load static inputs
     schedule = pd.read_csv(schedule_csv, dtype=str)
-    schedule = schedule.sort_values("slot_id").reset_index(drop=True)
+    # schedule = schedule.sort_values("row_id").reset_index(drop=True)
     chars = load_characters(characters_csv)
-    easy_df = pd.read_csv(easy_scenarios_csv)
-    hard_df = pd.read_csv(hard_scenarios_csv)
-    scenarios = build_combined_scenarios(easy_scenarios_csv, hard_scenarios_csv)
+    scenarios_df = pd.read_csv(scenarios_csv)
 
     # Resume: skip done slot_ids
     done_ids = read_done_slot_ids(results_csv)
     total = len(schedule)
-    pending_idxs = [i for i in range(total) if schedule.loc[i, "slot_id"] not in done_ids]
+    pending_idxs = [i for i in range(total) if schedule.loc[i, "row_id"] not in done_ids]
 
     print(f"[Runner] schedule={total} done={len(done_ids)} pending={len(pending_idxs)}")
 
@@ -217,18 +180,19 @@ def run_with_schedule(
 
         srow = schedule.loc[i]
         # Parse minimal fields
-        slot_id = str(srow["slot_id"])
+        row_id = str(srow["row_id"])
         scenario_idx = int(srow["scenario_idx"])
-        replicate_id = int(srow["replicate_id"])
-        subcategory = str(srow["subcategory"])
+        pair_id = int(srow["pair_id"])
+        pair_type_index = int(srow["pair_type_index"])
+        pair_type_label = srow["pair_type_label"]
+        pair_local_index = int(srow["pair_local_index"])
         agent_a_id = str(srow["agent_a_id"])
         agent_b_id = str(srow["agent_b_id"])
         difficulty = str(srow["difficulty"])
-        pair_L1 = str(srow.get("pair_L1", ""))
-        pair_L1_bin = str(srow.get("pair_L1_bin", ""))
+        model_name = str(srow["model_name"])
 
         # Reconstruct scenario row (full details)
-        scen = lookup_scenario_row(slot_id, easy_df, hard_df)
+        scen = lookup_scenario_row(scenario_idx, scenarios_df)
         scenario_data = scen.to_dict()
         # scenario_data = {
         #     "base_shared_goal": scen.get("base_shared_goal", ""),
@@ -250,7 +214,7 @@ def run_with_schedule(
                 raise KeyError(f"Character not found: {col}={val}")
             return m.iloc[0].to_dict()
 
-        id_col = "agent_id" if "agent_id" in chars.columns else chars.columns[0]
+        id_col = "agent_id" if "agent_id" in chars.columns else "id"
         agent_a = row_by_id(chars, id_col, agent_a_id)
         agent_b = row_by_id(chars, id_col, agent_b_id)
         agent_a_name = str(agent_a["mbti_profile"])
@@ -278,17 +242,16 @@ def run_with_schedule(
 
         # Prepare base row for results
         row_out = {
-            "slot_id": slot_id,
+            "row_id": row_id,
             "scenario_idx": scenario_idx,
-            "replicate_id": replicate_id,
-            "subcategory": subcategory,
+            "pair_id": pair_id,
+            "pair_type_index": pair_type_index,
+            "pair_type_label": pair_type_label,
+            "pair_local_index": pair_local_index,
             "agent_a_id": agent_a_id,
             "agent_b_id": agent_b_id,
             "agent_a_name": agent_a_name,
             "agent_b_name": agent_b_name,
-            "pair_L1": pair_L1,
-            "pair_L1_bin": pair_L1_bin,
-            "difficulty": difficulty,
             "base_shared_goal": scenario_data["base_shared_goal"],
             "social_goal_category": scenario_data["social_goal_category"],
             "explanation": scenario_data["explanation"],
@@ -298,6 +261,9 @@ def run_with_schedule(
             "agent1_role": scenario_data["agent1_role"],
             "agent2_role": scenario_data["agent2_role"],
             "scenario": scenario_data["scenario"],
+            "difficulty": difficulty,
+            "average_entailment_score": scenario_data.get("average_entailment_score", ""),
+            "model_name": model_name,
             "seed": seed,
             "status": "started",
             "created_at": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -360,7 +326,7 @@ def run_with_schedule(
 
         processed += 1
         pct = 100.0 * (len(done_ids) + processed) / total
-        print(f"[Runner] [{len(done_ids)+processed}/{total}] {slot_id} -> {row_out['status']} ({pct:.1f}%)")
+        print(f"[Runner] [{len(done_ids)+processed}/{total}] {row_id} -> {row_out['status']} ({pct:.1f}%)")
 
 
     print(f"[Runner] Finished. newly_processed={processed}, errors={errors}, total_done={len(done_ids)+processed}/{total}")
@@ -373,8 +339,7 @@ if __name__ == "__main__":
     run_with_schedule(
         schedule_csv=os.path.join(root, cfg.assignment_output_csv),
         characters_csv=os.path.join(root, cfg.characters_filepath),
-        easy_scenarios_csv=os.path.join(root, cfg.easy_scenario_csv),
-        hard_scenarios_csv=os.path.join(root, cfg.hard_scenario_csv),
+        scenarios_csv=os.path.join(root, cfg.scenarios_csv),
         behavioral_coding_csv=os.path.join(root,  config.pipeline.behavioral_coding_csv),
         results_csv=os.path.join(root, cfg.results_csv),
         model=config.pipeline.model,

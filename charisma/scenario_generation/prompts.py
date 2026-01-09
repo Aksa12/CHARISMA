@@ -15,7 +15,7 @@ def scenario_creation_prompt(
     json_format = {"scenario_context": "string", "explanation": "string"}
     user_message = f"""
     ### GOAL: ###
-    We aim to investigate attribution theory within the field of social psychology through the simulation of psychologically profiled, role-playing agents. These agents are situated in interpersonal scenarios involving shared and individual goals, enabling the study of how dispositional traits and situational factors interact to shape social behaviour.
+    We aim to explore attribution theory in social psychology by simulating interactions between psychologically profiled, role-playing agents. These agents are situated in interpersonal scenarios involving shared and individual goals. The objective is to analyze how dispositional traits and situational factors interact to shape social behavior.
 
     ### TASK: ###
     Given the following scenario setting and difficulty level, your task is to generate a scenario that sets up an interpersonal situation between two agents. This scenario will serve as the basis for generating the agents' conversation in the next step.
@@ -33,14 +33,14 @@ def scenario_creation_prompt(
     - Hard: High tension or challenges that make the shared and individual goals hard to achieve.
 
     ### INSTRUCTION: ###
-    1. Refer to the agents using "[Agent 1]" and "[Agent 2]" instead of names.
-    2. Do not include any conversation or interaction.
-    3. Generate ONLY the context of the situation. There shouldn’t be any additional explanation or conversation. The conversation between the agents will be generated in the next step.
+    1. Refer to the agents only as [Agent 1] and [Agent 2] (no personal names).
+    2. Generate ONLY the situation context. Do not include dialogue. The conversation between the agents will be generated in the next step.
+    3. The scenario should read as a social setup or scene introduction, not as a story or explanation.
+    4. The scenario must remain realistic, concise, and psychologically grounded, focusing on the social dynamics, not environmental details.
 
     ## OUTPUT FORMAT: ###
     Your response must have the following JSON format:
     json_format = {json_format}
-
     """
     messages = [
         {"role": "user", "content": user_message},

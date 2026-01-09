@@ -36,6 +36,48 @@ current_dir = os.getcwd()
 LOG_PATH = os.path.join(current_dir, "logs")
 TIMESTAMP = str(datetime.datetime.now(pytz.timezone("Europe/Berlin"))).replace(" ", "_").replace(".", ":")
 
+
+BFI_SCHEMA = {
+  "name": "bfi_output",
+  "strict": True,
+  "schema": {
+    "type": "object",
+    "additionalProperties": False,
+    "required": [
+      "bfi_personality_reflection",
+      "bfi_scores",
+      "response",
+      "behavioral_code",
+      "explanation"
+    ],
+    "properties": {
+      "bfi_personality_reflection": {"type": "string"},
+      "bfi_scores": {
+        "type": "object",
+        "additionalProperties": False,
+        "required": [
+          "openness",
+          "conscientiousness",
+          "extraversion",
+          "agreeableness",
+          "neuroticism"
+        ],
+        "properties": {
+          "openness": {"type": "number"},
+          "conscientiousness": {"type": "number"},
+          "extraversion": {"type": "number"},
+          "agreeableness": {"type": "number"},
+          "neuroticism": {"type": "number"}
+        }
+      },
+      "response": {"type": "string"},
+      "behavioral_code": {"type": "string"},
+      "explanation": {"type": "string"}
+    }
+  }
+}
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -206,6 +248,15 @@ class RolePlayEngine:
             model_kwargs={
                 "response_format": {"type": "json_object"},
             },
+            # model_kwargs={
+            #     "response_format": {
+            #         "type": "json_schema",
+            #         "json_schema": BFI_SCHEMA,
+            #     },
+                # Optional but often helpful with OpenRouter routing:
+                # "require_parameters": True,
+            # },
+
         )
 
         # base prompt template
