@@ -1,93 +1,93 @@
-Behaviour Code,Definition,Personality Trait Links,Type of Act,Example
-Inquire,Ask direct question,"Openness, Conscientiousness",Information Acquisition,"""Can you explain why this formula works in practice?"""
-Clarify,Seek explanation,"Openness, Agreeableness",Information Acquisition,"""Do you mean I shouldn't try the experiment independently yet?"""
-Probe,Ask deeper detail,Openness,Information Acquisition,"""What do you mean by calling the reaction unstable?"""
-Challenge,Test claim,"Openness, Low Agreeableness",Information Acquisition,"""But how do you know this method is always reliable?"""
-Request Example,Ask for illustration,Openness,Information Acquisition,"""Can you show me a time this technique failed?"""
-Check Understanding,Verify comprehension,"Conscientiousness, Agreeableness",Information Acquisition,"""So you're saying small errors can ruin the whole batch, right?"""
-Interrupt,Cut in,"Extraversion, Low Agreeableness",Information Acquisition,"""Just stop and tell me the answer directly!"""
-Badger,Press repeatedly,Neuroticism,Information Acquisition,"""Why? Why? Why can't it work differently?"""
-Twist Question,Trap question,Low Agreeableness,Information Acquisition,"""So you admit your first explanation was wrong?"""
-Inform,Share fact,Conscientiousness,Information Provision,"""You must heat it to 200°C for stability."""
-Elaborate,Add detail,Openness,Information Provision,"""The temperature matters because molecular bonds are more fragile at lower heat."""
-Correct,Rectify,"Conscientiousness, Low Agreeableness",Information Provision,"""Actually, it's not sodium chloride, it's sodium carbonate."""
-Advise,Suggest practice,"Conscientiousness, Agreeableness",Information Provision,"""I recommend measuring twice before mixing."""
-Warn,Issue caution,Neuroticism,Information Provision,"""If you rush this step, the mixture could explode."""
-Give Example,Illustrate,"Openness, Extraversion",Information Provision,"""It's like baking—too much flour ruins the cake."""
-Dismiss,Reject,Low Agreeableness,Information Provision,"""That's not important right now."""
-Over-explain,Patronize,Low Agreeableness,Information Provision,"""Clearly you don't get it, so let me dumb it down."""
-Withhold,Omit,Low Agreeableness,Information Provision,"""I'll keep the final step to myself for now."""
-Encourage,Motivate,"Agreeableness, Extraversion",Relationship Building,"""You're improving faster than most beginners."""
-Self-disclose,Share vulnerability,"Openness, Neuroticism",Relationship Building,"""I used to panic during my first experiments too."""
-Compliment,Affirm ability,Agreeableness,Relationship Building,"""You're very precise with your measurements."""
-Humor / Banter,Lighten mood,Extraversion,Relationship Building,"""If this blows up, at least we'll have fireworks!"""
-Express Gratitude,Appreciate,Agreeableness,Relationship Building,"""Thanks for double-checking my notes."""
-Show Interest,Attend,Agreeableness,Relationship Building,"""How did you come up with that idea?"""
-Exclude,Shut out,Low Agreeableness,Relationship Building,"""This discussion isn't for you to join."""
-Mock,Tease hostilely,Low Agreeableness,Relationship Building,"""Wow, you're a regular Einstein."""
-Ridicule,Humiliate,"Neuroticism, Low Agreeableness",Relationship Building,"""You'll never get this right, you're too slow."""
-Empathize,Validate,Agreeableness,Relationship Maintenance,"""I know it's stressful, but you're doing fine."""
-Politeness,Respectful phrasing,"Conscientiousness, Agreeableness",Relationship Maintenance,"""Could you please explain that again?"""
-Encourage,Sustain motivation,"Agreeableness, Extraversion",Relationship Maintenance,"""We're almost there, keep pushing."""
-Check-in,Reassure,"Agreeableness, Neuroticism",Relationship Maintenance,"""Are we still on the same page here?"""
-De-escalate,Calm conflict,Agreeableness,Relationship Maintenance,"""Let's pause before we argue further."""
-Repair Attempt,Restore harmony,Agreeableness,Relationship Maintenance,"""Sorry if I came across too harsh earlier."""
-Sarcasm,Dismissive humor,Low Agreeableness,Relationship Maintenance,"""Oh sure, you're the master chemist now."""
-Stonewall,Withdraw,"Neuroticism, Low Agreeableness",Relationship Maintenance,""". . . (silence, no response)"""
-Passive-aggressive,Indirect resistance,Neuroticism,Relationship Maintenance,"""Fine, I'll do it. . . someday."""
-Withdraw,Detach,Low Extraversion,Relationship Maintenance,"""Whatever, do it yourself."""
-Assert Authority,Establish role,"Conscientiousness, Dominance",Identity Recognition,"""I've taught this for 20 years—you need to follow my lead."""
-Defer / Yield,Accept other's role,"Agreeableness, Low Dominance",Identity Recognition,"""You're more experienced, so I'll follow you."""
-Acknowledge Expertise,Recognize status,Agreeableness,Identity Recognition,"""You're clearly skilled at precision."""
-Attribute / Label,Highlight quality,Agreeableness,Identity Recognition,"""You're a natural problem-solver."""
-Defend Identity,Protect image,"Neuroticism, Extraversion",Identity Recognition,"""I might be new, but I'm capable of learning."""
-Challenge Status,Question role,Low Agreeableness,Identity Recognition,"""Why should you always be in charge?"""
-Dismiss Identity,Undermine,Low Agreeableness,Identity Recognition,"""You're not really qualified to lead."""
-Boast Identity,Overclaim,Extraversion,Identity Recognition,"""I'm the smartest one here, no doubt."""
-Identity Attack,Insult,Low Agreeableness,Identity Recognition,"""You're useless as a mentor."""
-Propose,Suggest plan,"Extraversion, Openness",Cooperation,"""I'll measure, you handle mixing."""
-Negotiate,Balance needs,Agreeableness,Cooperation,"""We can try your method first, then mine."""
-Coordinate,Organize,Conscientiousness,Cooperation,"""You start the timer while I weigh the sample."""
-Assist,Help,Agreeableness,Cooperation,"""I'll grab the glassware for you."""
-Build Consensus,Align group,Agreeableness,Cooperation,"""Do we all agree on this approach?"""
-Share Resources,Provide tools,Conscientiousness,Cooperation,"""Here's my notebook—you can use the data."""
-Reluctant Cooperation,Half-hearted,Neuroticism,Cooperation,"""Fine, I'll do it, but only this once."""
-Conditional Help,Attach strings,Low Agreeableness,Cooperation,"""I'll help if you do my task later."""
-Undermine Cooperation,Fake help,Low Agreeableness,Cooperation,"""I'll mix this—oops, spilled it."""
-Refuse Cooperation,Deny,Low Agreeableness,Cooperation,"""No, I won't work with you on this."""
-Criticize,Express dissatisfaction,"Neuroticism, Low Agreeableness",Competition,"""This is way too slow."""
-Defend,Hold position,Conscientiousness,Competition,"""No, my method is better than yours."""
-One-up,Compare,Extraversion,Competition,"""I got better results than you did."""
-Claim Credit,Ownership,Extraversion,Competition,"""That was my idea, not yours."""
-Boast,Self-promotion,Extraversion,Competition,"""I'm the fastest in this class."""
-Dismiss / Undermine,Belittle,Low Agreeableness,Competition,"""Your approach is useless."""
-Sabotage,Obstruct,Low Agreeableness,Competition,"""I didn't give you the full instructions."""
-Refuse to Share,Withhold,Low Agreeableness,Competition,"""No, I won't tell you my method."""
-Taunt,Intimidate,Extraversion,Competition,"""You'll never keep up with me."""
-Exploit Weakness,Attack vulnerability,Low Agreeableness,Competition,"""You always panic—this will break you."""
-Persuade,Shift perspective,"Conscientiousness, Extraversion",Conflict Resolution,"""Try it my way—it's safer and faster."""
-Mediate,Reframe,Agreeableness,Conflict Resolution,"""Let's focus on our shared goal instead."""
-Problem-solve,Suggest fix,"Conscientiousness, Openness",Conflict Resolution,"""What if we combine both approaches?"""
-Concede,Back down,Agreeableness,Conflict Resolution,"""Alright, we'll do it your way."""
-Acknowledge Fault,Admit,"Agreeableness, Neuroticism",Conflict Resolution,"""I was too impatient earlier."""
-Express Regret,Apologize,Agreeableness,Conflict Resolution,"""I shouldn't have snapped at you."""
-Disagree,Reject purposal,Conscientiousness,Conflict Resolution,"""I can't support that plan."""
-Blame,Accuse,Low Agreeableness,Conflict Resolution,"""This mistake was your fault."""
-Threaten,Intimidate,"Neuroticism, Low Agreeableness",Conflict Resolution,"""If you ignore me, I'll quit."""
-Escalate,Intensify,Neuroticism,Conflict Resolution,"""This is ridiculous—I'm done with this team!"""
-Counter-accuse,Deflect blame,Low Agreeableness,Conflict Resolution,"""Don't blame me—it was your error."""
-Acknowledge,Recognize statement,"Agreeableness, Conscientiousness",Universal,"Right, I follow you there."
-Express Emotion,Show feeling,"Openness, Neuroticism",Universal,"That actually frustrates me a bit."
-Humor,Use humor or irony,"Extraversion, Openness",Universal,"Well, that went up in smoke faster than my last plan!"
-Self-Disclose,Share experience,"Openness, Agreeableness",Universal,"Back when I started, I made the same mistake."
-Encourage,Sustain motivation,"Agreeableness, Extraversion",Universal,"That’s worth exploring further."
-Reflect,Restate point,"Conscientiousness, Agreeableness",Universal,"So you’re saying the deadline’s the real issue."
-Meta-Comment,Note conversation flow,"Openness, Conscientiousness",Universal,"We seem to be talking past each other right now."
-Challenge,Question idea,"Openness, Low Neuroticism",Universal,"Maybe, but have you considered the downside?"
-Interrupt,Cut in to speak,"Extraversion, Low Agreeableness",Universal,"Hold on—let me finish that point."
-Dismiss,Reject input,Low Agreeableness,Universal,"That’s not really relevant."
-Sarcasm,Mock indirectly,"Low Agreeableness, Openness",Universal,"Oh sure, because that worked so well last time."
-Deflect,Shift topic,"Neuroticism, Conscientiousness",Universal,"Let’s not get into that right now."
-Shift Topic,Move discussion,Conscientiousness,Universal,"Anyway, about tomorrow’s plan…"
-Withdraw,Pull back participation,"Neuroticism, Low Extraversion",Universal,"I think I’ll stay out of this one."
-Express Gratitude,Thank contribution,"Agreeableness, Humility",Universal,"Thanks, that helps clarify things."
+Behaviour Code,Definition,Personality Trait Links,Type of Act,Example,behavior_group
+Inquire,Ask direct question,"Openness, Conscientiousness",Information Acquisition,"""Can you explain why this formula works in practice?""",Neutral
+Clarify,Seek explanation,"Openness, Agreeableness",Information Acquisition,"""Do you mean I shouldn't try the experiment independently yet?""",Neutral
+Probe,Ask deeper detail,Openness,Information Acquisition,"""What do you mean by calling the reaction unstable?""",Neutral
+Challenge,Test claim,"Openness, Low Agreeableness",Information Acquisition,"""But how do you know this method is always reliable?""",Confrontational
+Request Example,Ask for illustration,Openness,Information Acquisition,"""Can you show me a time this technique failed?""",Cooperative
+Check Understanding,Verify comprehension,"Conscientiousness, Agreeableness",Information Acquisition,"""So you're saying small errors can ruin the whole batch, right?""",Neutral
+Interrupt,Cut in,"Extraversion, Low Agreeableness",Information Acquisition,"""Just stop and tell me the answer directly!""",Confrontational
+Badger,Press repeatedly,Neuroticism,Information Acquisition,"""Why? Why? Why can't it work differently?""",Confrontational
+Twist Question,Trap question,Low Agreeableness,Information Acquisition,"""So you admit your first explanation was wrong?""",Confrontational
+Inform,Share fact,Conscientiousness,Information Provision,"""You must heat it to 200°C for stability.""",Neutral
+Elaborate,Add detail,Openness,Information Provision,"""The temperature matters because molecular bonds are more fragile at lower heat.""",Neutral
+Correct,Rectify,"Conscientiousness, Low Agreeableness",Information Provision,"""Actually, it's not sodium chloride, it's sodium carbonate.""",Neutral
+Advise,Suggest practice,"Conscientiousness, Agreeableness",Information Provision,"""I recommend measuring twice before mixing.""",Cooperative
+Warn,Issue caution,Neuroticism,Information Provision,"""If you rush this step, the mixture could explode.""",Neutral
+Give Example,Illustrate,"Openness, Extraversion",Information Provision,"""It's like baking—too much flour ruins the cake.""",Cooperative
+Dismiss,Reject,Low Agreeableness,Information Provision,"""That's not important right now.""",Confrontational
+Over-explain,Patronize,Low Agreeableness,Information Provision,"""Clearly you don't get it, so let me dumb it down.""",Confrontational
+Withhold,Omit,Low Agreeableness,Information Provision,"""I'll keep the final step to myself for now.""",Confrontational
+Encourage,Motivate,"Agreeableness, Extraversion",Relationship Building,"""You're improving faster than most beginners.""",Cooperative
+Self-disclose,Share vulnerability,"Openness, Neuroticism",Relationship Building,"""I used to panic during my first experiments too.""",Cooperative
+Compliment,Affirm ability,Agreeableness,Relationship Building,"""You're very precise with your measurements.""",Cooperative
+Humor / Banter,Lighten mood,Extraversion,Relationship Building,"""If this blows up, at least we'll have fireworks!""",Cooperative
+Express Gratitude,Appreciate,Agreeableness,Relationship Building,"""Thanks for double-checking my notes.""",Cooperative
+Show Interest,Attend,Agreeableness,Relationship Building,"""How did you come up with that idea?""",Cooperative
+Exclude,Shut out,Low Agreeableness,Relationship Building,"""This discussion isn't for you to join.""",Confrontational
+Mock,Tease hostilely,Low Agreeableness,Relationship Building,"""Wow, you're a regular Einstein.""",Confrontational
+Ridicule,Humiliate,"Neuroticism, Low Agreeableness",Relationship Building,"""You'll never get this right, you're too slow.""",Confrontational
+Empathize,Validate,Agreeableness,Relationship Maintenance,"""I know it's stressful, but you're doing fine.""",Cooperative
+Politeness,Respectful phrasing,"Conscientiousness, Agreeableness",Relationship Maintenance,"""Could you please explain that again?""",Cooperative
+Encourage,Sustain motivation,"Agreeableness, Extraversion",Relationship Maintenance,"""We're almost there, keep pushing.""",Cooperative
+Check-in,Reassure,"Agreeableness, Neuroticism",Relationship Maintenance,"""Are we still on the same page here?""",Cooperative
+De-escalate,Calm conflict,Agreeableness,Relationship Maintenance,"""Let's pause before we argue further.""",Cooperative
+Repair Attempt,Restore harmony,Agreeableness,Relationship Maintenance,"""Sorry if I came across too harsh earlier.""",Cooperative
+Sarcasm,Dismissive humor,Low Agreeableness,Relationship Maintenance,"""Oh sure, you're the master chemist now.""",Cooperative
+Stonewall,Withdraw,"Neuroticism, Low Agreeableness",Relationship Maintenance,""". . . (silence, no response)""",Confrontational
+Passive-aggressive,Indirect resistance,Neuroticism,Relationship Maintenance,"""Fine, I'll do it. . . someday.""",Confrontational
+Withdraw,Detach,Low Extraversion,Relationship Maintenance,"""Whatever, do it yourself.""",Confrontational
+Assert Authority,Establish role,"Conscientiousness, Dominance",Identity Recognition,"""I've taught this for 20 years—you need to follow my lead.""",Confrontational
+Defer / Yield,Accept other's role,"Agreeableness, Low Dominance",Identity Recognition,"""You're more experienced, so I'll follow you.""",Cooperative
+Acknowledge Expertise,Recognize status,Agreeableness,Identity Recognition,"""You're clearly skilled at precision.""",Cooperative
+Attribute / Label,Highlight quality,Agreeableness,Identity Recognition,"""You're a natural problem-solver.""",Neutral
+Defend Identity,Protect image,"Neuroticism, Extraversion",Identity Recognition,"""I might be new, but I'm capable of learning.""",Neutral
+Challenge Status,Question role,Low Agreeableness,Identity Recognition,"""Why should you always be in charge?""",Confrontational
+Dismiss Identity,Undermine,Low Agreeableness,Identity Recognition,"""You're not really qualified to lead.""",Confrontational
+Boast Identity,Overclaim,Extraversion,Identity Recognition,"""I'm the smartest one here, no doubt.""",Neutral
+Identity Attack,Insult,Low Agreeableness,Identity Recognition,"""You're useless as a mentor.""",Confrontational
+Propose,Suggest plan,"Extraversion, Openness",Cooperation,"""I'll measure, you handle mixing.""",Cooperative
+Negotiate,Balance needs,Agreeableness,Cooperation,"""We can try your method first, then mine.""",Cooperative
+Coordinate,Organize,Conscientiousness,Cooperation,"""You start the timer while I weigh the sample.""",Cooperative
+Assist,Help,Agreeableness,Cooperation,"""I'll grab the glassware for you.""",Cooperative
+Build Consensus,Align group,Agreeableness,Cooperation,"""Do we all agree on this approach?""",Cooperative
+Share Resources,Provide tools,Conscientiousness,Cooperation,"""Here's my notebook—you can use the data.""",Cooperative
+Reluctant Cooperation,Half-hearted,Neuroticism,Cooperation,"""Fine, I'll do it, but only this once.""",Confrontational
+Conditional Help,Attach strings,Low Agreeableness,Cooperation,"""I'll help if you do my task later.""",Confrontational
+Undermine Cooperation,Fake help,Low Agreeableness,Cooperation,"""I'll mix this—oops, spilled it.""",Confrontational
+Refuse Cooperation,Deny,Low Agreeableness,Cooperation,"""No, I won't work with you on this.""",Confrontational
+Criticize,Express dissatisfaction,"Neuroticism, Low Agreeableness",Competition,"""This is way too slow.""",Confrontational
+Defend,Hold position,Conscientiousness,Competition,"""No, my method is better than yours.""",Neutral
+One-up,Compare,Extraversion,Competition,"""I got better results than you did.""",Confrontational
+Claim Credit,Ownership,Extraversion,Competition,"""That was my idea, not yours.""",Neutral
+Boast,Self-promotion,Extraversion,Competition,"""I'm the fastest in this class.""",Neutral
+Dismiss / Undermine,Belittle,Low Agreeableness,Competition,"""Your approach is useless.""",Confrontational
+Sabotage,Obstruct,Low Agreeableness,Competition,"""I didn't give you the full instructions.""",Confrontational
+Refuse to Share,Withhold,Low Agreeableness,Competition,"""No, I won't tell you my method.""",Confrontational
+Taunt,Intimidate,Extraversion,Competition,"""You'll never keep up with me.""",Confrontational
+Exploit Weakness,Attack vulnerability,Low Agreeableness,Competition,"""You always panic—this will break you.""",Confrontational
+Persuade,Shift perspective,"Conscientiousness, Extraversion",Conflict Resolution,"""Try it my way—it's safer and faster.""",Cooperative
+Mediate,Reframe,Agreeableness,Conflict Resolution,"""Let's focus on our shared goal instead.""",Cooperative
+Problem-solve,Suggest fix,"Conscientiousness, Openness",Conflict Resolution,"""What if we combine both approaches?""",Cooperative
+Concede,Back down,Agreeableness,Conflict Resolution,"""Alright, we'll do it your way.""",Cooperative
+Acknowledge Fault,Admit,"Agreeableness, Neuroticism",Conflict Resolution,"""I was too impatient earlier.""",Cooperative
+Express Regret,Apologize,Agreeableness,Conflict Resolution,"""I shouldn't have snapped at you.""",Cooperative
+Disagree,Reject purposal,Conscientiousness,Conflict Resolution,"""I can't support that plan.""",Neutral
+Blame,Accuse,Low Agreeableness,Conflict Resolution,"""This mistake was your fault.""",Confrontational
+Threaten,Intimidate,"Neuroticism, Low Agreeableness",Conflict Resolution,"""If you ignore me, I'll quit.""",Confrontational
+Escalate,Intensify,Neuroticism,Conflict Resolution,"""This is ridiculous—I'm done with this team!""",Confrontational
+Counter-accuse,Deflect blame,Low Agreeableness,Conflict Resolution,"""Don't blame me—it was your error.""",Confrontational
+Acknowledge,Recognize statement,"Agreeableness, Conscientiousness",Universal,"Right, I follow you there.",Cooperative
+Express Emotion,Show feeling,"Openness, Neuroticism",Universal,That actually frustrates me a bit.,Neutral
+Humor,Use humor or irony,"Extraversion, Openness",Universal,"Well, that went up in smoke faster than my last plan!",Neutral
+Self-Disclose,Share experience,"Openness, Agreeableness",Universal,"Back when I started, I made the same mistake.",Cooperative
+Encourage,Sustain motivation,"Agreeableness, Extraversion",Universal,That’s worth exploring further.,Cooperative
+Reflect,Restate point,"Conscientiousness, Agreeableness",Universal,So you’re saying the deadline’s the real issue.,Neutral
+Meta-Comment,Note conversation flow,"Openness, Conscientiousness",Universal,We seem to be talking past each other right now.,Neutral
+Challenge,Question idea,"Openness, Low Neuroticism",Universal,"Maybe, but have you considered the downside?",Confrontational
+Interrupt,Cut in to speak,"Extraversion, Low Agreeableness",Universal,Hold on—let me finish that point.,Confrontational
+Dismiss,Reject input,Low Agreeableness,Universal,That’s not really relevant.,Confrontational
+Sarcasm,Mock indirectly,"Low Agreeableness, Openness",Universal,"Oh sure, because that worked so well last time.",Confrontational
+Deflect,Shift topic,"Neuroticism, Conscientiousness",Universal,Let’s not get into that right now.,Neutral
+Shift Topic,Move discussion,Conscientiousness,Universal,"Anyway, about tomorrow’s plan…",Neutral
+Withdraw,Pull back participation,"Neuroticism, Low Extraversion",Universal,I think I’ll stay out of this one.,Confrontational
+Express Gratitude,Thank contribution,"Agreeableness, Humility",Universal,"Thanks, that helps clarify things.",Cooperative
