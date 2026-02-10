@@ -2,7 +2,7 @@
 name = "charisma"
 version = "0.1.0"
 model = "deepseek/deepseek-chat-v3-0324"
-provider = "novita/fp8"
+provider = "deepinfra/fp4"
 behavioral_coding_csv="inputs/behavioral_coding.csv"
 input_csv = "outputs/goals_gemini.csv"
 [pipeline.setup_goals]
@@ -38,8 +38,8 @@ n_scenario_reps=7
 max_pair_overall=2
 max_pair_per_cell=1
 pairs_output_csv="outputs/personality_ga/pairs.csv"
-assignment_output_csv="inputs/robustness_2_assignment_cooperation.csv"
-results_csv="outputs/results_robustness_2_cooperation_deepseek.csv"
+assignment_output_csv="outputs/results_personality_mistral_v1.csv"
+results_csv="outputs/results_personality_mistral_v2.csv"
 [pipeline.experiments.robustness_2]
 characters_filepath="inputs/filtered_characters.csv"
 scenario_csv="inputs/scenario_database_filtered.csv"
